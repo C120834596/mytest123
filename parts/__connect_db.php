@@ -1,11 +1,11 @@
 <?php
 $db_host='localhost';
 //主機
-$db_name='動物園商品';
+$db_name='動物園導覽';
 //資料庫名稱
-$db_user='s88173';
+$db_user='root';
 //使用者帳號
-$db_pass='55551122';
+$db_pass='';
 //使用者密碼
 
 $dsn="mysql:host={$db_host};dbname={$db_name};charset=utf8";
@@ -18,11 +18,11 @@ $db_options=[
     PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8",
 ];
 
-/*try{
+try{
 $pdo = new PDO($dsn,$db_user,$db_pass,$db_options);
 }catch (PDOException $ex){
     echo '**** *****'.$ex->getMessage();
-};*/
+};
 
 
 if(! isset($_SESSION)){
