@@ -11,7 +11,8 @@ $pagename = 'insert';
 <?php include __DIR__ . '/parts/__navbar.php' ?>
 <style>
     .form-text{
-        color: crimson;
+        /* color: crimson; */
+        color:black;
     }
 </style>
 <div class="container">
@@ -19,27 +20,32 @@ $pagename = 'insert';
         <div class="col-6 mx-auto mt-3">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-center">建立會員</h3>
-
+                    <h3 class="card-title text-center">動物圖鑑</h3>
+    <!--     `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->
                     <form name="form_member" onsubmit="sendData(); return false;">
                         <div class="mb-3">
-                            <label for="email" class="form-label">Account (Email)</label>
-                            <input type="text" class="form-control" id="email" name="email">
+                            <label for="animal_sid" class="form-label">編號</label>
+                            <input type="text" class="form-control" id="animal_sid" name="animal_sid">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label">名稱 (學名)</label>
                             <input type="text" class="form-control" id="name" name="name">
+                            <div class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="English_name" class="form-label">英文名稱</label>
+                            <input type="text" class="form-control" id="English_name" name="English_name">
                             <div class="form-text"></div>
                             <!-- 將所有適用的字符轉換為 HTML 實體 -->
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">物種</label>
                             <input type="text" class="form-control" id="password" name="password">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="mobile" class="form-label">Mobile</label>
+                            <label for="mobile" class="form-label">產地</label>
                             <input type="text" class="form-control" id="mobile" name="mobile" data-pattern="09\d{2}-?\d{3}-?\d{3}">
                             <div class="form-text"></div>
                         </div>
@@ -49,7 +55,7 @@ $pagename = 'insert';
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">Address</label>
+                            <label for="address" class="form-label">備註</label>
                             <textarea name="address" id="address" cols="30" rows="3"></textarea>
                             <div class="form-text"></div>
                         </div>
@@ -98,21 +104,29 @@ $pagename = 'insert';
 
 <?php include __DIR__ . '/parts/__scripts.php' ?>
 <script>
-    const email = document.querySelector('#email');
-    const name = document.querySelector('#name');
-    const mobile = document.querySelector('#mobile');
+    const animal_sid=document.querySelector('animal_sid')
+    const name=document.querySelector('#name');
+    const English_name = document.querySelector('#English_name');
     const password = document.querySelector('#password');
+    const mobile = document.querySelector('#mobile'); 
+    const birthday = document.querySelector('#birthday');
+    const address =document.querySelector('#address');
+    
+   
 
     const modal = new bootstrap.Modal(document.querySelector('#exampleModal'));
 
-    const email_re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
-
+   const email_re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+   const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
+  //  <!--     `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->
     function sendData() {
-        email.nextElementSibling.innerHTML = '';
+        animal_sid.nextElementSibling.innerHTML = '';
         name.nextElementSibling.innerHTML = '';
-        mobile.nextElementSibling.innerHTML = '';
+        English_name.nextElementSibling.innerHTML = '';
         password.nextElementSibling.innerHTML = '';
+        mobile.nextElementSibling.innerHTML = '';
+        birthday.nextElementSibling.innerHTML = '';
+        address.nextElementSibling.innerHTML = '';
 
         let isPass = true;
         // 檢查
@@ -135,7 +149,7 @@ $pagename = 'insert';
 
 
         if (isPass) {
-            const fd = new FormData(document.form_member);
+            const fd = new FormData(document.form_member);  //取得表單的參照
 
             fetch('insertMember-api.php', {
                     method: 'POST',

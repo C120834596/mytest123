@@ -24,13 +24,13 @@ $password = $_POST['password'] ?? '';
 
 if(empty($name)){
     $output['code'] = 403;
-    $output['error'] = '請輸入正確的姓名';
+    $output['error'] = '請輸入正確的名稱1';
     echo json_encode($output, JSON_UNESCAPED_UNICODE);
     exit;
 }
 if(empty($email) or !filter_var($email, FILTER_VALIDATE_EMAIL)){
     $output['code'] = 401;
-    $output['error'] = '請輸入正確的email';
+    $output['error'] = '請輸入正確的名稱';
     echo json_encode($output, JSON_UNESCAPED_UNICODE);
     exit;
 }

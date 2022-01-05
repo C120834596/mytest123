@@ -29,12 +29,15 @@ $rows = $pdo->query($sql)->fetchAll();
         <div class="bd-example my-5">
             <table class="table table-hover">
                 <thead>
-                    <tr>   
+                    <tr> 
+          <!--     `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->  
                         <th scope="col">#</th>
-                        <th scope="col">Account (Email)</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Account (Name)</th>
+                        <th scope="col">English_Name</th>
                         <th scope="col">Password</th>
                         <th scope="col">Mobile</th>
+                        <th scope="col">Birthday</th>
+                        <th scope="col">Address</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -42,10 +45,12 @@ $rows = $pdo->query($sql)->fetchAll();
                         <?php foreach ($rows as $r) : ?>
                             <tr>
                                 <td><?= $r['animal_sid'] ?></td>
-                                <td><?= $r['email'] ?></td>
                                 <td><?= $r['name'] ?></td>
+                                <td><?= $r['English_name'] ?></td>
                                 <td><?= $r['password'] ?></td>
                                 <td><?= $r['mobile'] ?></td>
+                                <td><?= $r['birthday'] ?></td>
+                                <td><?= $r['address'] ?></td>
                                 <td>
                                     <button type="button" class="editBtn btn btn-outline">修改</button>
                                     <button type="button" class="delBtn btn btn-outline">刪除</button>

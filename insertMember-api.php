@@ -9,7 +9,7 @@ $output = [
 
 // TODO:沒有登入...
 
-
+//<!--    `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';
 $mobile = $_POST['mobile'] ?? '';
@@ -23,7 +23,7 @@ if(empty($name)){
 }
 if(empty($email) or !filter_var($email, FILTER_VALIDATE_EMAIL)){
     $output['code'] = 401;
-    $output['error'] = '請輸入正確的email';
+    $output['error'] = '請輸入正確的名稱';
     echo json_encode($output, JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -39,22 +39,27 @@ if(empty($password)){
     echo json_encode($output, JSON_UNESCAPED_UNICODE);
 }
 
-
-$sql = "INSERT INTO `members`(
-                        `email`, 
-                        `name`, 
-                        `password`, 
+//<!--     `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->
+$sql = "INSERT INTO `address_1`(
+                        `animal_sid`,  
+                        `name`,
+                        `English_name`,
+                        `password` 
                         `mobile`, 
-                        `birthday`, 
-                        `address`
-                        ) VALUES (?, ?, ?, ?, ?, ?)";
+                        `birthday`,
+                        `addtess`
+                        ) VALUES (?, ?, ?, ?, ?,?,?)";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
-    $email,
+    $address_1,
+    $animal_sid,  
     $name,
-    $password,
-    $mobile,
+    $English_name,
+    $password, 
+    $mobile, 
+    $birthday,
+    $addtess,
     empty($_POST['birthday']) ? NULL : $_POST['birthday'],
     $_POST['address'] ?? '',
 ]);
