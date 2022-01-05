@@ -22,12 +22,7 @@ $pagename = 'insert';
                 <div class="card-body">
                     <h3 class="card-title text-center">動物圖鑑</h3>
     <!--     `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->
-                    <form name="form_member" onsubmit="sendData(); return false;">
-                        <div class="mb-3">
-                            <label for="animal_sid" class="form-label">編號</label>
-                            <input type="text" class="form-control" id="animal_sid" name="animal_sid">
-                            <div class="form-text"></div>
-                        </div>
+                    <form name="form_member">
                         <div class="mb-3">
                             <label for="name" class="form-label">名稱 (學名)</label>
                             <input type="text" class="form-control" id="name" name="name">
@@ -71,7 +66,7 @@ $pagename = 'insert';
                         </div>
                         */ ?>
 
-                        <button type="submit" class="btn btn-primary">新增</button>
+                        <button type="submit" class="btn btn-primary" onclick="sendData();">新增</button>
                     </form>
 
                 </div>
@@ -104,7 +99,6 @@ $pagename = 'insert';
 
 <?php include __DIR__ . '/parts/__scripts.php' ?>
 <script>
-    const animal_sid=document.querySelector('animal_sid')
     const name=document.querySelector('#name');
     const English_name = document.querySelector('#English_name');
     const password = document.querySelector('#password');
@@ -115,12 +109,8 @@ $pagename = 'insert';
    
 
     const modal = new bootstrap.Modal(document.querySelector('#exampleModal'));
-
-   const email_re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
    const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
-  //  <!--     `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->
     function sendData() {
-        animal_sid.nextElementSibling.innerHTML = '';
         name.nextElementSibling.innerHTML = '';
         English_name.nextElementSibling.innerHTML = '';
         password.nextElementSibling.innerHTML = '';
@@ -130,10 +120,7 @@ $pagename = 'insert';
 
         let isPass = true;
         // 檢查
-        if (email.value && !email_re.test(email.value)) {
-            isPass = false;
-            email.nextElementSibling.innerHTML = '請輸入正確的email';
-        }
+        
         if (name.value.length < 2) {
             isPass = false;
             name.nextElementSibling.innerHTML = '請輸入正確的姓名';
@@ -148,7 +135,7 @@ $pagename = 'insert';
         }
 
 
-        if (isPass) {
+       
             const fd = new FormData(document.form_member);  //取得表單的參照
 
             fetch('insertMember-api.php', {
@@ -158,13 +145,13 @@ $pagename = 'insert';
                 .then(obj => {
                     if (obj.success) {
                         alert('新增成功');
-                        location.href = 'memberList.php';
+                        location.href = 'index_.php';
                     } else {
                         document.querySelector('.modal-body').innerHTML = obj.error || '資料修改發生錯誤';
                         modal.show();
                     }
                 })
-        }
+        
 
     }
 </script>
