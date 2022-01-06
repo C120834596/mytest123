@@ -50,20 +50,20 @@ if(empty($password)){
 $sql = "UPDATE `members` SET
                      `email`=?,
                      `name`=?,
-                     `password`=?,
-                     `mobile`=?,
+                     `species`=?,
+                     `origin`=?,
                      `birthday`=?,
-                     `address`=? 
+                     `remark`=? 
         WHERE `sid`=?";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
     $email,
     $name,
-    $password,
-    $mobile,
+    $species,
+    $origin,
     empty($_POST['birthday']) ? NULL : $_POST['birthday'],
-    $_POST['address'] ?? '',
+    $_POST['remark'] ?? '',
     $sid
 ]);
 

@@ -30,30 +30,30 @@ $rows = $pdo->query($sql)->fetchAll();
             <table class="table table-hover">
                 <thead>
                     <tr> 
-          <!--     `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->  
+          <!--     `animal_sid`, `name`, `English_name`, `password`, `origin`, `birthday`, `remark` -->  
                         <th scope="col">#</th>
                         <th scope="col">Account (Name)</th>
                         <th scope="col">English_Name</th>
-                        <th scope="col">Password</th>
-                        <th scope="col">Mobile</th>
+                        <th scope="col">species</th>
+                        <th scope="col">origin</th>
                         <th scope="col">Birthday</th>
-                        <th scope="col">Address</th>
+                        <th scope="col">remark</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                         <?php foreach ($rows as $r) : ?>
                             <tr>
-                                <td><?= $r['animal_sid'] ?></td>
+                                <td><?= $r['sid'] ?></td>
                                 <td><?= $r['name'] ?></td>
                                 <td><?= $r['English_name'] ?></td>
-                                <td><?= $r['password'] ?></td>
-                                <td><?= $r['mobile'] ?></td>
+                                <td><?= $r['species'] ?></td>
+                                <td><?= $r['origin'] ?></td>
                                 <td><?= $r['birthday'] ?></td>
-                                <td><?= $r['address'] ?></td>
+                                <td><?= $r['remark'] ?></td>
                                 <td>
-                                    <button type="button" class="editBtn btn btn-outline">修改</button>
-                                    <button type="button" class="delBtn btn btn-outline">刪除</button>
+                                  <a href="edit.php?sid=<?= $r['sid'] ?>"><button type="button" class="editBtn btn btn-outline">修改</button></a>  
+                                  <a href="delete.php?sid=<?= $r['sid'] ?>"><button type="button" class="delBtn btn btn-outline">刪除</button></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

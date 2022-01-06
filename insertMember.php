@@ -1,7 +1,7 @@
 <?php
 
 require __DIR__ . '/parts/__connect_db.php';
-$title = '建立會員';
+$title = '動物資料管理';
 $pagename = 'insert';
 
 ?>
@@ -10,9 +10,9 @@ $pagename = 'insert';
 <?php include __DIR__ . '/parts/__sidebar.php' ?>
 <?php include __DIR__ . '/parts/__navbar.php' ?>
 <style>
-    .form-text{
-        /* color: crimson; */
-        color:black;
+    .form-text {
+        color: crimson;
+
     }
 </style>
 <div class="container">
@@ -21,10 +21,10 @@ $pagename = 'insert';
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-center">動物圖鑑</h3>
-    <!--     `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->
-                    <form name="form_member">
+                    <!--     `animal_sid`, `name`, `English_name`, `species`, `	origin`, `birthday`, `remark` -->
+                    <form name="form_member" onsubmit="sendData();return false;">
                         <div class="mb-3">
-                            <label for="name" class="form-label">名稱 (學名)</label> 
+                            <label for="name" class="form-label">名稱 (學名)</label>
                             <input type="text" class="form-control" id="name" name="name">
                             <div class="form-text"></div>
                         </div>
@@ -35,13 +35,13 @@ $pagename = 'insert';
                             <!-- 將所有適用的字符轉換為 HTML 實體 -->
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">物種</label>
-                            <input type="text" class="form-control" id="password" name="password">
+                            <label for="species" class="form-label">物種</label>
+                            <input type="text" class="form-control" id="species" name="species">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="mobile" class="form-label">產地</label>
-                            <input type="text" class="form-control" id="mobile" name="mobile">  <!-- data-pattern="09\d{2}-?\d{3}-?\d{3}"  -->
+                            <label for="origin" class="form-label">產地</label>
+                            <input type="text" class="form-control" id="origin" name="origin"> <!-- data-pattern="09\d{2}-?\d{3}-?\d{3}"  -->
                         </div>
                         <div class="mb-3">
                             <label for="birthday" class="form-label">Birthday</label>
@@ -49,8 +49,8 @@ $pagename = 'insert';
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">備註</label>
-                            <textarea name="address" id="address" cols="30" rows="3"></textarea>
+                            <label for="remark`" class="form-label">備註</label>
+                            <textarea name="remark" id="remark" cols="30" rows="3"></textarea>
                             <div class="form-text"></div>
                         </div>
                         <?php /*
@@ -65,7 +65,8 @@ $pagename = 'insert';
                         </div>
                         */ ?>
 
-                        <button type="submit" class="btn btn-primary" onclick="sendData();">新增</button>
+                        <button type="submit" class="subbtn btn btn-primary" >新增</button>
+
                     </form>
 
                 </div>
@@ -98,44 +99,41 @@ $pagename = 'insert';
 
 <?php include __DIR__ . '/parts/__scripts.php' ?>
 <script>
-    const name=document.querySelector('#name');
+    const name = document.querySelector('#name');
     const English_name = document.querySelector('#English_name');
-    const password = document.querySelector('#password');
-    const mobile = document.querySelector('#mobile'); 
+    const species = document.querySelector('#species');
+    const origin = document.querySelector('#origin');
     const birthday = document.querySelector('#birthday');
-    const address =document.querySelector('#address');
-    
-   
+    const remark = document.querySelector('#remark');
+
+
 
     const modal = new bootstrap.Modal(document.querySelector('#exampleModal'));
-   const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
+    //  const origin_re = /^09\d{2}-?\d{3}-?\d{3}$/;
     function sendData() {
         name.nextElementSibling.innerHTML = '';
-        English_name.nextElementSibling.innerHTML = '';
-        password.nextElementSibling.innerHTML = '';
-        mobile.nextElementSibling.innerHTML = '';
-        birthday.nextElementSibling.innerHTML = '';
-        address.nextElementSibling.innerHTML = '';
+        // English_name.nextElementSibling.innerHTML = '';
+        species.nextElementSibling.innerHTML = '';
+        // origin.nextElementSibling.innerHTML = '';
+        // birthday.nextElementSibling.innerHTML = '';
+        remark.nextElementSibling.innerHTML = '';
 
         let isPass = true;
         // 檢查
-        
+
         if (name.value.length < 2) {
             isPass = false;
             name.nextElementSibling.innerHTML = '請輸入正確的姓名';
         }
-        if (mobile.value && !mobile_re.test(mobile.value)) {
+
+        if (species.value.length < 5) {
             isPass = false;
-            mobile.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
-        }
-        if (password.value.length < 5) {
-            isPass = false;
-            password.nextElementSibling.innerHTML = '請輸入密碼';
+            species.nextElementSibling.innerHTML = '請輸入位置';
         }
 
 
-       
-            const fd = new FormData(document.form_member);  //取得表單的參照
+        if (isPass) {
+            const fd = new FormData(document.form_member) //取得表單的參照
 
             fetch('insertMember-api.php', {
                     method: 'POST',
@@ -150,8 +148,9 @@ $pagename = 'insert';
                         modal.show();
                     }
                 })
-        
 
+
+        }
     }
 </script>
 

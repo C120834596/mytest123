@@ -7,28 +7,31 @@ $output = [
     'error' => '',
 ];
 
-$name = $_POST['name'] ?? '';
-$email = $_POST['email'] ?? '';
-$mobile = $_POST['mobile'] ?? '';
-$password = $_POST['password'] ?? '';
+// $name = $_POST['name'] ?? '';
+// $English_name = $_POST['English_name']?? '';
+// $species = $_POST['species'] ?? '';
+// $origin = $_POST['origin'] ?? '';
+// $birthday = $_POST['birthday'] ?? '';
+// $remark = $_POST['remark'] ??'';
+
 
 $sql = "INSERT INTO `address_1`( 
                         `name`,
                         `English_name`,
-                        `password`,
-                        `mobile`, 
+                        `species`,
+                        `origin`, 
                         `birthday`,
-                        `address`
+                        `remark`
                         ) VALUES (?, ?, ?, ?, ?,?)";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
-    $name,
-    $English_name,
-    $password, 
-    $mobile, 
+    $_POST['name'] ?? '',   //非必填 必填寫$name,
+    $_POST['English_name']?? '',
+    $_POST['species'] ?? '', 
+    $_POST['origin'] ?? '', 
     empty($_POST['birthday']) ? NULL : $_POST['birthday'],
-    $_POST['address'] ?? '',
+    $_POST['remark'] ?? '',
 ]);
 
     $output['success'] = $stmt->rowCount()==1;
@@ -36,3 +39,6 @@ $stmt->execute([
 
 
 echo json_encode($output, JSON_UNESCAPED_UNICODE);
+
+
+//`animal_sid`, `name`, `English_name`, `species`, `origin`, `birthday`, `remark`
