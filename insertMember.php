@@ -29,7 +29,7 @@ $pagename = 'insert';
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="name" class="form-label">名稱 (學名)</label>
+                            <label for="name" class="form-label">名稱 (學名)</label> 
                             <input type="text" class="form-control" id="name" name="name">
                             <div class="form-text"></div>
                         </div>
@@ -46,8 +46,7 @@ $pagename = 'insert';
                         </div>
                         <div class="mb-3">
                             <label for="mobile" class="form-label">產地</label>
-                            <input type="text" class="form-control" id="mobile" name="mobile" data-pattern="09\d{2}-?\d{3}-?\d{3}">
-                            <div class="form-text"></div>
+                            <input type="text" class="form-control" id="mobile" name="mobile">  <!-- data-pattern="09\d{2}-?\d{3}-?\d{3}"  -->
                         </div>
                         <div class="mb-3">
                             <label for="birthday" class="form-label">Birthday</label>
@@ -120,7 +119,7 @@ $pagename = 'insert';
    const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
   //  <!--     `animal_sid`, `name`, `English_name`, `password`, `mobile`, `birthday`, `address` -->
     function sendData() {
-        animal_sid.nextElementSibling.innerHTML = '';
+       // animal_sid.nextElementSibling.innerHTML = '';
         name.nextElementSibling.innerHTML = '';
         English_name.nextElementSibling.innerHTML = '';
         password.nextElementSibling.innerHTML = '';
