@@ -110,10 +110,6 @@ $pagename = 'insert';
     const modal = new bootstrap.Modal(document.querySelector('#exampleModal'));
    const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
     function sendData() {
-<<<<<<< HEAD
-       // animal_sid.nextElementSibling.innerHTML = '';
-=======
->>>>>>> 3aab34007699af1e63ecba7cc5e923a725d82b03
         name.nextElementSibling.innerHTML = '';
         English_name.nextElementSibling.innerHTML = '';
         password.nextElementSibling.innerHTML = '';
