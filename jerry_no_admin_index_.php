@@ -1,6 +1,11 @@
 <?php
 
 require __DIR__ . '/parts/__connect_db.php';
+// if(! isset($_SESSION['admin'])){
+//     header('Location: jerry_no_admin_index_.php');
+//     exit;
+//  }
+
 $pageName = 'index';
 // 沒有登入管理帳號,就轉向
 
@@ -18,7 +23,7 @@ $rows = $pdo->query($sql)->fetchAll();
 <div class="container my-3">
     <div class="row">
         <div class="col-6">
-            <button type="button" onclick="location.href='insertMember.php'" class="insert btn btn-outline" id="btn">新增</button>
+       <!--     <button type="button" onclick="location.href='jerry_insert.php'" class="insert btn btn-outline" id="btn">新增</button> -->
         </div>
         <div class="col-3">
             <form class="d-flex">
@@ -52,8 +57,8 @@ $rows = $pdo->query($sql)->fetchAll();
                                 <td><?= $r['birthday'] ?></td>
                                 <td><?= $r['remark'] ?></td>
                                 <td>
-                                  <a href="edit.php?sid=<?= $r['sid'] ?>"><button type="button" class="editBtn btn btn-outline">修改</button></a>  
-                                  <a href="delete.php?sid=<?= $r['sid'] ?>"><button type="button" class="delBtn btn btn-outline">刪除</button></a>
+                                <!--  <a href="edit.php?sid=<?= $r['sid'] ?>"><button type="button" class="editBtn btn btn-outline">修改</button></a>  
+                                  <a href="delete.php?sid=<?= $r['sid'] ?>"><button type="button" class="delBtn btn btn-outline">刪除</button></a>  -->
                                 </td>
                             </tr>
                         <?php endforeach; ?>

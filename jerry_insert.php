@@ -21,7 +21,7 @@ $pagename = 'insert';
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-center">動物圖鑑</h3>
-                    <!--     `animal_sid`, `name`, `English_name`, `species`, `	origin`, `birthday`, `remark` -->
+                    <!--     `sid`, `name`, `English_name`, `species`, `	origin`, `birthday`, `remark` -->
                     <form name="form_member" onsubmit="sendData();return false;">
                         <div class="mb-3">
                             <label for="name" class="form-label">名稱 (學名)</label>
@@ -135,14 +135,14 @@ $pagename = 'insert';
         if (isPass) {
             const fd = new FormData(document.form_member) //取得表單的參照
 
-            fetch('insertMember-api.php', {
+            fetch('jerry_insert-api.php', {
                     method: 'POST',
                     body: fd,
                 }).then(r => r.json())
                 .then(obj => {
                     if (obj.success) {
                         alert('新增成功');
-                        location.href = 'index_.php';
+                        location.href = 'jerry_index_.php';
                     } else {
                         document.querySelector('.modal-body').innerHTML = obj.error || '資料修改發生錯誤';
                         modal.show();
