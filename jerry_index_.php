@@ -14,7 +14,7 @@ $pageName = 'list';
 
 $content = (isset($_POST['searchbox']) ? $_POST['searchbox'] : '');
 if ($content != '') {
-    $sql = sprintf("SELECT *  FROM `address_1` WHERE `name` LIKE '$content'");
+    $sql = sprintf("SELECT *  FROM `address_1` WHERE `name` LIKE '$content' OR `English_name` LIKE '$content' OR `species` LIKE '$content' OR `origin` LIKE '$content'");
 } else {
     $sql = sprintf("SELECT *  FROM `address_1` WHERE 1");
 }
