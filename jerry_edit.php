@@ -25,17 +25,58 @@ if(empty($row)){
 
 ?>
 <?php include __DIR__. '/parts/__html_head.php' ?>
-<?php include __DIR__. '/parts/__navbar.php' ?>
 <?php include __DIR__ . '/parts/__sidebar.php' ?>
 
 <style>
+    .container1 {
+        width: calc(100% - 250px);
+        position: relative;
+        left: 250px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    .card-title{ 
+        text-align: center;
+        top: 0;
+        position: absolute;
+        padding: 10px 0;
+        width: 100%;
+        background-color:  #2f4f4f;
+        color: white;
+        left: 0;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .row {
+        justify-content: center;
+    }
+    .subbtn {
+        background-color: #2f4f4f;
+        border-color: #2f4f4f;
+    }
+
+    .subbtn:hover {
+        background-color: #908a70;
+        border-color: #908a70;
+    }
+
+    .subbtn:active {
+        background-color: #2f4f4f;
+        border-color: #2f4f4f;
+        box-shadow:0 0 0 2px #daa520;
+    }
+    .subbtn:focus {
+        background-color: #2f4f4f;
+        border-color: #2f4f4f;
+        box-shadow:0 0 0 2px #daa520;
+    }
     form .form-text {
         color: red;
     }
 </style>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
+<div class="container1 d-flex justify-content-center">
+    <!-- <div class="row"> -->
+        <div class="col-md-5">
             <div class="card" >
                 <div class="card-body">
                     <h5 class="card-title">修改資料</h5>
@@ -43,37 +84,37 @@ if(empty($row)){
                     <form name="form1" onsubmit="sendData(); return false;">
                         <input type="hidden" name="sid" value="<?= $row['sid'] ?>">
                         <div class="mb-3">
-                            <label for="name" class="form-label">name *</label>
+                            <label for="name" class="form-label">名稱 *</label>
                             <input type="text" class="form-control" id="name" name="name" value="<?= htmlentities($row['name']) ?>">
                             <div class="form-text"></div>
                         </div>
                        <!--     `sid`, `name`, `English_name`, `species`, `	origin`, `birthday`, `remark` -->
                         <div class="mb-3">
-                            <label for="English_name" class="form-label">English_name</label>
+                            <label for="English_name" class="form-label">學名</label>
                             <input type="text" class="form-control" id="English_name" name="English_name"
                                    value="<?= $row['English_name'] ?>">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="species" class="form-label">species</label>
+                            <label for="species" class="form-label">科目</label>
                             <input type="text" class="form-control" id="species" name="species"
                             value="<?= $row['species'] ?>">  <!--data-pattern="09\d{2}-?\d{3}-?\d{3}" -->  
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="origin" class="form-label">origin</label>
+                            <label for="origin" class="form-label">分佈</label>
                             <input type="text" class="form-control" id="origin" name="origin"
                                    value="<?= $row['origin'] ?>">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="birthday" class="form-label">birthday</label>
+                            <label for="birthday" class="form-label">生日</label>
                             <input type="date" class="form-control" id="birthday" name="birthday"
                                    value="<?= $row['birthday'] ?>">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="remark" class="form-label">remark</label>
+                            <label for="remark" class="form-label">備註</label>
                             <textarea class="form-control" name="remark" id="remark"
                                       cols="30"
                                       rows="3"><?= $row['remark'] ?></textarea>
@@ -81,14 +122,14 @@ if(empty($row)){
                             <div class="form-text"></div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">修改</button>
+                        <button type="submit" class="subbtn btn btn-primary">修改</button>
 
                     </form>
 
                 </div>
             </div>
 
-        </div>
+        <!-- </div> -->
     </div>
 
     <!-- Modal -->

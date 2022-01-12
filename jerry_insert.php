@@ -8,8 +8,18 @@ $pagename = 'insert';
 
 <?php include __DIR__ . '/parts/__html_head.php' ?>
 <?php include __DIR__ . '/parts/__sidebar.php' ?>
-<?php include __DIR__ . '/parts/__navbar.php' ?>
 <style>
+    .container {
+        width: calc(100% - 250px);
+        position: absolute;
+        left: 250px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .row {
+        justify-content: center;
+    }
     .form-text {
         color: crimson;
 
@@ -24,23 +34,23 @@ $pagename = 'insert';
                     <!--     `sid`, `name`, `English_name`, `species`, `	origin`, `birthday`, `remark` -->
                     <form name="form_member" onsubmit="sendData();return false;">
                         <div class="mb-3">
-                            <label for="name" class="form-label">名稱 (學名)</label>
+                            <label for="name" class="form-label">名稱</label>
                             <input type="text" class="form-control" id="name" name="name">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="English_name" class="form-label">英文名稱</label>
+                            <label for="English_name" class="form-label">學名</label>
                             <input type="text" class="form-control" id="English_name" name="English_name">
                             <div class="form-text"></div>
                             <!-- 將所有適用的字符轉換為 HTML 實體 -->
                         </div>
                         <div class="mb-3">
-                            <label for="species" class="form-label">物種</label>
+                            <label for="species" class="form-label">科目</label>
                             <input type="text" class="form-control" id="species" name="species">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="origin" class="form-label">產地</label>
+                            <label for="origin" class="form-label">分佈</label>
                             <input type="text" class="form-control" id="origin" name="origin"> <!-- data-pattern="09\d{2}-?\d{3}-?\d{3}"  -->
                         </div>
                         <div class="mb-3">
